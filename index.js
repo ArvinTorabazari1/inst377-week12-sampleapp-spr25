@@ -5,7 +5,7 @@ const { isValidStateAbbreviation } = require('usa-state-validator');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const app = express ()
+const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
@@ -13,6 +13,11 @@ app.use(express.static(__dirname + '/public'))
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey= process.env.SUPABASE_KEY;
 const supabase = supabaseClient.createClient(supabaseUrl, supabaseKey);
+
+
+app.get('/', (req, res) => {
+    res.sendFile('public/INST377-Week12-Customers.html', { root: __dirname });
+  });
 
 
 app.get('/customers', async (req, res) => {
